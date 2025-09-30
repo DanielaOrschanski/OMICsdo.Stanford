@@ -39,7 +39,14 @@ git branch -M main
 git push -u origin main
 
 
+##### ERROR
+git clone --mirror https://github.com/DanielaOrschanski/OMICsdo.Stanford.git
+cd OMICsdo.Stanford.git
+sudo apt install git-filter-repo
+#Guada14514213
+git filter-repo --invert-paths --path SincronizarGithub.sh
 
+#####
 #tuve que eliminar archov grande porque me daba error:
 rm Log.out
 git filter-branch --force --index-filter \
@@ -53,14 +60,6 @@ git filter-branch --force --index-filter \
 ################################################
 #token omicsdo
 #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
-
-cd /media/4tb2/Daniela/Biota/PipelineBiota
-git init
-git --version
-
-git remote add origin https://github.com/DanielaOrschanski/PipelineBiota.git
-git remote -v
-git remote remove origin
 
 
 #esto solo la primwra vez
