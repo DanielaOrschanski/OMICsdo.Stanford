@@ -12,7 +12,7 @@ Using the command OMICSdo.Stanford::setup_environment() it downloads the followi
 Additionally, it downloads the hg38 genome reference (fasta and annotation).
 
 The only "complicated" step is the index of the reference with STAR. In order to do this we provide 2 options:
-1. Downloading it from Google Drive Folder: setting parameter "fromDrive = TRUE" in downloadHG38() function.
+1. Downloading it from Google Drive Folder: setting parameter "**fromDrive = TRUE**" in downloadHG38() function.
 2. Letting STAR generates its index. No need for changes in any parameter.
 
 The system packages (installed by sudo) required are:
