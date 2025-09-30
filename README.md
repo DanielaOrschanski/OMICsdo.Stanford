@@ -2,7 +2,7 @@
 
 R package for RNAseq data analysis.
 
-Using the command OMICSdo.Stanford::setup_environment() it downloads the following softwares:
+Using the command **OMICSdo.Stanford::setup_environment()** it downloads the following tools:
 1. FastQC
 2. Trim Galore
 3. STAR
