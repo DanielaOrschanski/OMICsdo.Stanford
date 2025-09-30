@@ -1,0 +1,24 @@
+#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+PK_Tyr_Ser-Thr       PF07714.22   258 ENST00000496384-BRAF -            767   3.8e-63  213.5   0.0   1   1   2.3e-66   5.5e-63  212.9   0.0     1   256   457   712   457   714 0.92 Protein tyrosine and serine/threonine kinase
+Pkinase              PF00069.30   263 ENST00000496384-BRAF -            767   1.7e-60  204.9   0.0   1   1   9.2e-64   2.2e-60  204.5   0.0     2   260   458   713   457   716 0.93 Protein kinase domain
+RBD                  PF02196.20    69 ENST00000496384-BRAF -            767   1.2e-27   95.9   0.0   1   2   1.7e-30   4.2e-27   94.1   0.0     2    69   157   225   156   225 0.98 Raf-like Ras-binding domain
+RBD                  PF02196.20    69 ENST00000496384-BRAF -            767   1.2e-27   95.9   0.0   2   2         2   4.9e+03   -2.2   0.0    31    53   734   756   731   757 0.86 Raf-like Ras-binding domain
+C1_1                 PF00130.27    53 ENST00000496384-BRAF -            767   1.1e-13   51.1   7.8   1   1   8.5e-17   2.1e-13   50.2   7.8     1    51   235   281   235   282 0.98 Phorbol esters/diacylglycerol binding domain (C1 domain)
+Kinase-like          PF14531.11   289 ENST00000496384-BRAF -            767   1.4e-07   31.3   0.0   1   1   8.5e-11   2.1e-07   30.8   0.0   158   289   564   704   536   704 0.89 Kinase-like
+zf-RING-like         PF08746.16    43 ENST00000496384-BRAF -            767   5.7e-05   23.4   3.9   1   1   5.7e-08   0.00014   22.2   3.9     1    28   248   273   248   276 0.95 RING-like domain
+ABC1                 PF03109.21   244 ENST00000496384-BRAF -            767   0.00085   18.8   0.2   1   2     0.028        69    2.7   0.0    38    61   463   484   460   489 0.85 ABC1 atypical kinase-like domain
+ABC1                 PF03109.21   244 ENST00000496384-BRAF -            767   0.00085   18.8   0.2   2   2   1.7e-05     0.041   13.3   0.2   144   214   526   598   516   604 0.84 ABC1 atypical kinase-like domain
+C1_2                 PF03107.21    48 ENST00000496384-BRAF -            767    0.0072   16.9   3.5   1   1   6.2e-06     0.015   15.9   3.5    18    47   246   272   231   273 0.83 C1 domain
+Pkinase_fungal       PF17667.6    387 ENST00000496384-BRAF -            767     0.027   13.5   0.2   1   1   1.6e-05     0.039   12.9   0.2   291   379   556   642   541   650 0.81 Fungal protein kinase
+#
+# Program:         hmmscan
+# Version:         3.3.2 (Nov 2020)
+# Pipeline mode:   SCAN
+# Query file:      /media/16TBDisk/Daniela/OMICsdo/R/MVP-Fusiones/fasta_tmp/fasta_seq_proteins
+# Target file:     /media/16TBDisk/Daniela/Pfam/Pfam-A.hmm
+# Option settings: hmmscan --domtblout /media/16TBDisk/Daniela/OMICsdo/R/MVP-Fusiones/fasta_tmp/found-domains.tab /media/16TBDisk/Daniela/Pfam/Pfam-A.hmm /media/16TBDisk/Daniela/OMICsdo/R/MVP-Fusiones/fasta_tmp/fasta_seq_proteins 
+# Current dir:     /media/16TBDisk/Daniela/Pfam
+# Date:            Fri Sep 26 12:01:56 2025
+# [ok]
