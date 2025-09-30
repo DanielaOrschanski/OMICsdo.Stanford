@@ -7,7 +7,8 @@ Using the command OMICSdo.Stanford::setup_environment() it downloads the followi
 2. Trim Galore
 3. STAR
 4. Arriba
-5. R packages required
+5. R packages required:
+   GEOquery, Rsubread, ggplot2,ggpubr, openxlsx, png, readr, readxl, reshape2, rmarkdown, rstudioapi, stringr, survival, survminer, viridis.
 
 Additionally, it downloads the hg38 genome reference (fasta and annotation).
 
