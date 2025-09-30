@@ -32,10 +32,13 @@ git remote -v
 #esto solo la primwra vez
 git remote add origin https://github.com/DanielaOrschanski/OMICsdo.Stanford.git
 git remote -v
-#git remote remove origin
-git status
-git branch
+
+git add .
+git commit -m "Initial commit"
+git branch -M main
 git push -u origin main
+
+
 
 #tuve que eliminar archov grande porque me daba error:
 rm Log.out
