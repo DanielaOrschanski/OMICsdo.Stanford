@@ -15,6 +15,8 @@ The only "complicated" step is the index of the reference with STAR. In order to
 1. Downloading it from Google Drive Folder: setting parameter "**fromDrive = TRUE**" in downloadHG38() function.
 2. Letting STAR generates its index. No need for changes in any parameter.
 
+
 The system packages (installed by sudo) required are:
+
 sudo apt install wget unzip cutadapt tar bzip2
 
