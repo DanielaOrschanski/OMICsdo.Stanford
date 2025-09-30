@@ -30,6 +30,9 @@ git push origin main --force
 git remote -v
 
 #esto solo la primwra vez
+git config user.name
+git config user.email
+
 git remote add origin https://github.com/DanielaOrschanski/OMICsdo.Stanford.git
 git remote -v
 
