@@ -12,7 +12,7 @@ git --version
 
 #Cada vez que cambio algo
 git add .
-git commit -m "Actualizacion 8/8"
+git commit -m "Actualizacion 30/9"
 git push -u origin main
 
 #si da error:
@@ -33,6 +33,9 @@ git remote -v
 git remote add origin https://github.com/DanielaOrschanski/OMICsdo.Stanford.git
 git remote -v
 #git remote remove origin
+git status
+git branch
+git push -u origin main
 
 #tuve que eliminar archov grande porque me daba error:
 rm Log.out
@@ -41,7 +44,6 @@ git filter-branch --force --index-filter \
 --prune-empty --tag-name-filter cat -- --all
 #-----
 
-git push -u origin main
 
 
 
