@@ -138,11 +138,6 @@ check_packages <- function() {
     BiocManager::install("GEOquery")
   }
   library(GEOquery)
-  
-  if (!requireNamespace("qckitfastq", quietly = TRUE)) {
-    BiocManager::install("qckitfastq")
-  }
-  library(qckitfastq)
 
   message("The R packages required have been successfully installed")
 }
@@ -199,6 +194,7 @@ downloadFastQC <- function(soft_directory) {
 
           # Definicion de la variable FastQC con el ejecutable
           FastQC <<- sprintf('%s/FastQC/FastQC/fastqc', soft_directory)
+          FastQC <- path.expand(FastQC)
           system2(FastQC, "--help")
 
           # En caso de que la descarga haya sido exitosa, agregamos el path al archivo TXT
@@ -286,7 +282,8 @@ downloadTrimGalore <- function(soft_directory) {
 
           TrimGalore <<- sprintf("%s/TrimGalore/TrimGalore-0.6.10/trim_galore", soft_directory)
           system2(TrimGalore, "--help")
-
+          TrimGalore <- path.expand(TrimGalore)
+          
           # En caso de que la descarga haya sido exitosa, agregamos el path al archivo TXT
           #softwares <- readLines(sprintf("%s/OMICsdoSof/path_to_soft.txt", dirname(system.file(package = "OMICsdo"))))
           softwares <- readLines(sprintf("%s/path_to_soft.txt", soft_directory))
@@ -378,7 +375,8 @@ downloadSTAR <- function(soft_directory) {
           # Definimos la variable de STAR con su ejecutable
           STAR <<- sprintf("%s/STAR/STAR-2.7.11a/bin/Linux_x86_64_static/STAR", soft_directory)
           system2(STAR, "--help")
-
+          STAR <- path.expand(STAR)
+          
           # En caso de que la descarga haya sido exitosa, agregamos el path al archivo TXT
           #softwares <- readLines(sprintf("%s/OMICsdoSof/path_to_soft.txt", dirname(system.file(package = "OMICsdo"))))
           softwares <- readLines(sprintf("%s/path_to_soft.txt", soft_directory))
@@ -463,6 +461,7 @@ downloadArriba <- function(soft_directory) {
 
           ARRIBA <<- sprintf("%s/Arriba/arriba_v2.4.0/arriba", soft_directory)
           system2(ARRIBA, "-help")
+          ARRIBA <- path.expand(ARRIBA)
 
           # En caso de ya existir el archivo, solamente agregamos el proximo path
           #softwares <- readLines(sprintf("%s/path_to_soft.txt",soft_directory))
@@ -538,6 +537,7 @@ downloadSamtools <- function(soft_directory) {
       softwares <- readLines(sprintf("%s/OMICsdoSof/path_to_soft.txt", soft_directory))
 
       Samtools <- sprintf("%s/Samtools/samtools-1.16.1/samtools", soft_directory)
+      Samtools <- path.expand(Samtools)
       softwares_actualizado <- c(softwares, sprintf("Samtools %s", Samtools))
       #write(softwares_actualizado, file = sprintf("%s/OMICsdoSof/path_to_soft.txt", dirname(system.file(package = "OMICsdo"))))
       #write(softwares_actualizado, file = sprintf("%s/OMICsdoSof/path_to_soft.txt", soft_directory))
@@ -581,6 +581,3 @@ downloadSamtools <- function(soft_directory) {
 
   return(sprintf("%s/Samtools/samtools-1.16.1/samtools", soft_directory))
 }
-
-
-
