@@ -138,6 +138,11 @@ check_packages <- function() {
     BiocManager::install("GEOquery")
   }
   library(GEOquery)
+  
+  if (!requireNamespace("qckitfastq", quietly = TRUE)) {
+    BiocManager::install("qckitfastq")
+  }
+  library(qckitfastq)
 
   message("The R packages required have been successfully installed")
 }
