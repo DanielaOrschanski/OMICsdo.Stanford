@@ -3,10 +3,13 @@
 #' @return Paths of FASTA and GTF(annotation) from the genome reference.
 #' @import rstudioapi
 
-indexRefSTAR <- function(AnnotationHG38, FastaHG38) {
+indexRefSTAR <- function(soft_directory, AnnotationHG38, FastaHG38, fromDrive = FALSE) {
 
+  if(grepl(".gz", FastaHG38)) {
+    FastaHG38 <- gsub("\\.gz$", "", FastaHG38)
+  }
   #softwares <- readLines(sprintf("%s/OMICsdoSof/path_to_soft.txt", dirname(system.file(package = "OMICsdo"))))
-  soft_directory <- dirname(dirname(AnnotationHG38))
+  #soft_directory <- dirname(dirname(AnnotationHG38))
   softwares <- readLines(sprintf("%s/path_to_soft.txt", soft_directory))
   linea_software <- grep("(?i)HG38Index", softwares, ignore.case = TRUE, value = TRUE)
 
@@ -32,18 +35,38 @@ indexRefSTAR <- function(AnnotationHG38, FastaHG38) {
     # Cambiar permisos para lectura
     system(paste("chmod +r", FastaHG38), intern = TRUE)
 
-    log <- system2(command = STAR,
-                   args = c(paste0("--runThreadN ", nThreads),
-                            "--runMode genomeGenerate",
-                            paste0("--genomeDir " , sprintf("%s/HG38/index", soft_directory)),
-                            paste0("--genomeFastaFiles ", FastaHG38),
-                            "--sjdbOverhang 100 ",
-                            "--genomeSAindexNbases 12",
-                            paste0("--sjdbGTFfile ", AnnotationHG38)
-                   ), stdout = TRUE)#out.file)
+    #Opcion 1: Descargar los archivos desde el drive:
+    if(fromDrive == TRUE) {
+      library(googledrive)
+      folder_url <- "https://drive.google.com/drive/folders/1gXXYwgjl1JzrITwJ32jv2jF3Ic3glF-7?usp=drive_link"
+      local_folder <- sprintf("%s/HG38/index", soft_directory)
+
+      folder_id <- sub(".*/folders/(.*)\\?usp=drive_link", "\\1", folder_url)
+      folder_files <- as.data.frame(drive_ls(as_id(folder_id)))
+
+      # Iterar sobre la lista de archivos y descargarlos
+      for (i in 1:nrow(folder_files)) {
+        file_id <- folder_files[i,"id"]
+        file_name <- folder_files[i,"name"]
+        local_path <- paste(local_folder, "/", file_name, sep="")
+        drive_download(file_id, path = local_path, overwrite = TRUE)
+      }
+    } else {
+      #Opcion 2: Generar el index
+      log <- system2(command = STAR,
+                     args = c(paste0("--runThreadN ", nThreads),
+                              "--runMode genomeGenerate",
+                              paste0("--genomeDir " , sprintf("%s/HG38/index", soft_directory)),
+                              paste0("--genomeFastaFiles ", FastaHG38),
+                              "--sjdbOverhang 100 ",
+                              "--genomeSAindexNbases 12",
+                              paste0("--sjdbGTFfile ", AnnotationHG38)
+                     ), stdout = TRUE)#out.file)
+    }
 
     #Writes down the paths in the txt
     HG38Index <- sprintf("%s/HG38/index", soft_directory)
+    HG38Index <- path.expand(HG38Index)
 
     softwares <- readLines(sprintf("%s/path_to_soft.txt", soft_directory))
 
@@ -104,7 +127,7 @@ indexRefSTAR <- function(AnnotationHG38, FastaHG38) {
 #' @return Paths of FASTA and GTF(annotation) from the genome reference.
 #' @import GEOquery
 #' @export
-downloadHG38 <- function(soft_directory) {
+downloadHG38 <- function(soft_directory, fromDrive = FALSE) {
   message("ESTOY EN DOWNLOAD HG38")
 
   #Checks if Annotation is already downloaded --------------------
@@ -125,7 +148,7 @@ downloadHG38 <- function(soft_directory) {
 
     gunzip(AnnotationHG38, destname = gsub("[.]gz$", "", AnnotationHG38), overwrite = FALSE, remove = TRUE)
     AnnotationHG38 <- sprintf("%s/HG38/Homo_sapiens.GRCh38.110.gtf", soft_directory)
-
+    AnnotationHG38 <- path.expand(AnnotationHG38)
     #Writes down the paths in the txt
     softwares <- readLines(sprintf("%s/path_to_soft.txt", soft_directory))
 
@@ -152,8 +175,8 @@ downloadHG38 <- function(soft_directory) {
 
     FastaHG38 <- sprintf("%s/HG38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz", soft_directory)
     gunzip(FastaHG38, destname = gsub("[.]gz$", "", FastaHG38), overwrite = FALSE, remove = TRUE)
-    FastaHG38 <<- sprintf("%s/HG38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa", soft_directory)
-
+    FastaHG38 <- sprintf("%s/HG38/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa", soft_directory)
+    FastaHG38 <- path.expand(FastaHG38)
     #Indexar con bwa la referencia:
     #message("The reference will be indexed by BWA")
     #system(sprintf("bwa index %s"), FastaHG38)
@@ -176,7 +199,7 @@ downloadHG38 <- function(soft_directory) {
   linea_fasta <- grep("HG38FASTA", softwares, ignore.case = TRUE, value = TRUE)
   FastaHG38 <- strsplit(linea_fasta, split = " ")[[1]][2]
 
-  paths <- indexRefSTAR(AnnotationHG38, FastaHG38)
+  paths <- indexRefSTAR(soft_directory, AnnotationHG38, FastaHG38, fromDrive)
   FastaHG38 <<- paths[[1]]
   AnnotationHG38 <<- paths[[2]]
   index_dir_STAR <<- paths[[3]]
@@ -238,6 +261,3 @@ downloadHG19 <- function(soft_directory) {
   return(FastaHG19ADN)
 
 }
-
-
-
