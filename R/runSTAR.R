@@ -33,11 +33,12 @@ runSTAR <- function(patient_dir, twoPass = c("None","Basic"), soft_directory) {
     id <- basename(dirname(patient_dir))
   }
 
+  bam_file <- sprintf("%s/trimmed/%s_Aligned_out.bam", patient_dir, id)
   #Evita repetir el analisis si ya fue hecho
   if(file.exists(bam_file)) {
     if(file.info(bam_file)$size > 0) {
       message("The STAR alignment for this sample has already been done.")
-      return(paste0(patient_dir, "/", file_list[endsWith(file_list, "Aligned_out.bam")], sep=""))
+      return(bam_file)
     }
   }
 
