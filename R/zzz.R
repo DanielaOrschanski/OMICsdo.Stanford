@@ -270,7 +270,7 @@ downloadTrimGalore <- function(soft_directory) {
       tryCatch(
         expr = {
           # Primero hay que verificar que este descargado FastQC y Cutadapt.
-          downloadFastQC()
+          #downloadFastQC()
 
           # Proceso de Descarga de TrimGalore
           dir.create(sprintf("%s/TrimGalore", soft_directory))
