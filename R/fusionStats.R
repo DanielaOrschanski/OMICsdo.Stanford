@@ -10,7 +10,7 @@
 #' @import ggpubr
 #' @examples fusionStats(patients_dir, Metadata, group = "group")
 
-fusionStats <- function(patients_dir, protein_df, Metadata = NA, group = NA, cohorte = "", sobrevida = TRUE, Apareados = FALSE, grupo_ids_apareados = NA, Anotation = FALSE) {
+fusionStats <- function(patients_dir, protein_df = NA, Metadata = NA, group = NA, cohorte = "", sobrevida = FALSE, Apareados = FALSE, grupo_ids_apareados = NA, Anotation = FALSE) {
 
   ids <-  list.dirs(path = patients_dir, full.names = TRUE, recursive = FALSE)
   length(ids)
