@@ -17,7 +17,7 @@ setup_environment <- function() {
     stop("No directory selected.")
   }
 
-
+  soft_directory <- path.expand(soft_directory)
   omicsdo_sof <- soft_directory
 
   if (!dir.exists(omicsdo_sof)) {
