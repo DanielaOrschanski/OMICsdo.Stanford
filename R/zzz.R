@@ -38,6 +38,7 @@ setup_environment <- function() {
   downloadArriba(omicsdo_sof)
   downloadSamtools(omicsdo_sof)
   downloadHG38(omicsdo_sof)
+  downloadMIXCR(omicsdo_sof)
 }
 
 
