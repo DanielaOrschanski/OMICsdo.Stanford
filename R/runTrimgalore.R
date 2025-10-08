@@ -11,6 +11,10 @@ runTrimgalore <- function(patient_dir,  trim_quality = 30, soft_directory, nThre
   patient_id <- basename(patient_dir)
   file_list <- list.files(patient_dir)
 
+   if(is.na(nThreads)){
+    nThreads <- max(1,parallel::detectCores()-2)
+  }
+
   gzip <- ifelse(length(nchar(file_list[endsWith(file_list, "R1.fastq.gz")])) == 0, "", ".gz")
   fileR1 <- paste0(patient_dir, "/", file_list[endsWith(file_list, sprintf("R1.fastq%s", gzip))], sep="")
   fileR2 <- paste0(patient_dir, "/", file_list[endsWith(file_list, sprintf("R2.fastq%s", gzip))], sep="")
