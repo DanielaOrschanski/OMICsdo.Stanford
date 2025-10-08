@@ -4,7 +4,7 @@
 #' @param trim_quality is the minimum value of the quality of each base within the sequence that will pass the filter.
 #' @return path of the trimmed folder which contained the trimmed files and was created inside the patient folder.
 #' @export
-runTrimgalore <- function(patient_dir,  trim_quality = 30, soft_directory) {
+runTrimgalore <- function(patient_dir,  trim_quality = 30, soft_directory, nThreads = NA) {
 
   # Chequeamos que esta descargado TrimGalore. En caso de no estarlo, lo descarga
   TrimGalore <- downloadTrimGalore(soft_directory)
@@ -41,6 +41,7 @@ runTrimgalore <- function(patient_dir,  trim_quality = 30, soft_directory) {
                               args =c("--paired",
                                       gziped,
                                       sprintf("-q %s", trim_quality),
+                                      paste0("--cores ", nThreads), # WE ADD THIS!
                                       paste0("--output_dir ", outdir),
                                       fileR1,
                                       fileR2,
