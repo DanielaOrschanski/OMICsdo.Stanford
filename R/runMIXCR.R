@@ -7,7 +7,10 @@
 runMIXCR <- function(patient_dir, nThreads = NA) {
 
   file_list <- list.files(patient_dir)
-
+  if(is.na(nThreads)){
+    nThreads <- max(1,parallel::detectCores()-2)
+  }
+  
   #Para que se pueda poner como entrada la carpeta de los trimmeados o la carpeta original:
   if  (startsWith(basename(patient_dir), "trimmed")) {
     gzip <- ifelse(length(nchar(file_list[endsWith(file_list, "val_1.fq.gz")])) == 0, "", ".gz")
