@@ -67,6 +67,7 @@ runSTAR <- function(patient_dir, twoPass = c("None","Basic"), soft_directory) {
                           # "--outStd BAM_Unsorted",
                           "--outSAMtype BAM Unsorted",
                           "--outSAMunmapped Within",
+                          "--outReadsUnmapped Fastx", # THIS WAS ADDED TO KEEP UNMAPPED READS IN SEPARATE .MATE FILES
                           "--outBAMcompression 0",
                           "--outFilterMultimapNmax 50",
                           "--peOverlapNbasesMin 10",
