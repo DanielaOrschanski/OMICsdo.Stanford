@@ -4,7 +4,7 @@
 #' @return The path where the executable file is located
 #' @export
 
-runMIXCR <- function(patient_dir) {
+runMIXCR <- function(patient_dir, nThreads = NA) {
 
   file_list <- list.files(patient_dir)
 
@@ -47,6 +47,7 @@ runMIXCR <- function(patient_dir) {
 
   system2(command = MIXCR,
           args = c("analyze",
+                    "--threads", nThreads,
             "takara-human-bcr-full-length",
                    fileR1,
                    fileR2,
