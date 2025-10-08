@@ -21,7 +21,8 @@ RNAseqP <- function(patients_dir,
                     RunFeatureCounts = TRUE,
                     RunMIXCR = FALSE,
                     cohort_name,
-                    soft_directory
+                    soft_directory,
+                    nThreads = NA
                     ) {
 
   #patients_dir <- "~/EnvironChile/Muestras"
@@ -66,7 +67,7 @@ RNAseqP <- function(patients_dir,
       #Returns trimmed folder inside patient's folder
       if(!file.exists(bam)) {
         TrimGalore_time <- system.time({
-        patient_dir_trim <<- runTrimgalore(patient_dir, trim_quality = trim_quality, soft_directory = soft_directory)
+        patient_dir_trim <<- runTrimgalore(patient_dir, trim_quality = trim_quality, soft_directory = soft_directory, nThreads = nThreads)
         })
       }
 
@@ -87,7 +88,7 @@ RNAseqP <- function(patients_dir,
 
       #MIXCR
       if(RunMIXCR == TRUE) {
-        MIXCR_time <- system.time(runMIXCR(patient_dir_trim))
+        MIXCR_time <- system.time(runMIXCR(patient_dir_trim, nThreads = nThreads))
         times_registered <- c(times_registered, MIXCR_time[[3]])
         softwares_runned <- c(softwares_runned, "MIXCR")
         message(sprintf("The patient %s has already been processed with MIXCR", patient))
@@ -95,7 +96,7 @@ RNAseqP <- function(patients_dir,
 
 
       #STAR
-      STAR_time <- system.time(runSTAR(patient_dir = patient_dir_trim, soft_directory = soft_directory))
+      STAR_time <- system.time(runSTAR(patient_dir = patient_dir_trim, soft_directory = soft_directory, nThreads = nThreads))
       times_registered <- c(times_registered, STAR_time[[3]])
       softwares_runned <- c(softwares_runned, "STAR")
       message(sprintf("The patient %s has already been processed with STAR", patient))
