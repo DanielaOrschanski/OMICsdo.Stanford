@@ -113,7 +113,7 @@ RNAseqP <- function(patients_dir,
             genomeversion = "hg19"
             assemblyVersion = "GRCh37"
           }
-          ARRIBA <- runARRIBA(patient_dir_trim, genomeversion = genomeversion, assemblyVersion = assemblyVersion )
+          ARRIBA <- runARRIBA(patient_dir_trim, genomeversion = genomeversion, assemblyVersion = assemblyVersion, soft_directory = soft_directory )
           message(sprintf("The patient %s has already been processed with ARRIBA", patient))
 
         }, error = function(e) {
