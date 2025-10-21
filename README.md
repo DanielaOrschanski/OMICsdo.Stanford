@@ -55,10 +55,9 @@ RNAseqP(patients_dir = "~/Samples",
 
 ### 5. Calculate  basic fusion stats:
 fusionStats(patients_dir = "~/Samples",
-            patients_dir, 
             Metadata = metadata_file, 
             group = "tissue", 
-            cohorte = "Example", 
+            cohorte = "Example"
             )
 
 
