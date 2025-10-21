@@ -37,6 +37,8 @@ runSTAR <- function(patient_dir, twoPass = c("None","Basic"), soft_directory, nT
   bam_file2 <- sprintf("%s/trimmed/%sAligned_out.bam", patient_dir, id)
   bam_file3 <- sprintf("%s/%s_Aligned_out.bam", patient_dir, id)
   bam_file4 <- sprintf("%s/%sAligned_out.bam", patient_dir, id)
+  print(bam_file)
+  
   #Evita repetir el analisis si ya fue hecho
   if(file.exists(bam_file) | file.exists(bam_file2) | file.exists(bam_file3) | file.exists(bam_file4)) {
     #if(file.info(bam_file)$size > 0) {
