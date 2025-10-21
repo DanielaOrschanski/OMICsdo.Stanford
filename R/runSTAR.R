@@ -39,10 +39,10 @@ runSTAR <- function(patient_dir, twoPass = c("None","Basic"), soft_directory, nT
   bam_file4 <- sprintf("%s/%sAligned_out.bam", patient_dir, id)
   #Evita repetir el analisis si ya fue hecho
   if(file.exists(bam_file) | file.exists(bam_file2) | file.exists(bam_file3) | file.exists(bam_file4)) {
-    if(file.info(bam_file)$size > 0) {
+    #if(file.info(bam_file)$size > 0) {
       message("The STAR alignment for this sample has already been done.")
       return(bam_file)
-    }
+    #}
   }
 
   #Para que se pueda poner como entrada la carpeta de los trimmeados o la carpeta original:
