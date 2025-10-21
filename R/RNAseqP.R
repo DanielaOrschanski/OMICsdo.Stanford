@@ -96,11 +96,13 @@ RNAseqP <- function(patients_dir,
 
 
       #STAR
-      STAR_time <- system.time(runSTAR(patient_dir = patient_dir_trim, soft_directory = soft_directory, nThreads = nThreads))
-      times_registered <- c(times_registered, STAR_time[[3]])
-      softwares_runned <- c(softwares_runned, "STAR")
-      message(sprintf("The patient %s has already been processed with STAR", patient))
-
+      if( !file.exists(bam)) {
+        STAR_time <- system.time(runSTAR(patient_dir = patient_dir_trim, soft_directory = soft_directory, nThreads = nThreads))
+        times_registered <- c(times_registered, STAR_time[[3]])
+        softwares_runned <- c(softwares_runned, "STAR")
+        message(sprintf("The patient %s has already been processed with STAR", patient))
+      }
+      
       #ARRIBA
       if (RunARRIBA == TRUE) {
         tryCatch({
